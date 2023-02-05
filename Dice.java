@@ -51,24 +51,53 @@ public class Dice {
 
     public static void TwoDice() {
         int dice[] = {0,0};
-        int probs[] = new int[11]; //Ignore index 0
+        int probs[] = new int[17]; //Ignore index 0
         long N = 1000000;
-        int sidesOnDie = 5;
+        int sidesOnDie = 8;
+        int currentRoll = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < dice.length; j++) {
-                dice[j] = roll(sidesOnDie);
+                currentRoll = roll(sidesOnDie);
+                if (currentRoll == 1) {
+                    dice[j] = currentRoll;
+                    // System.out.println(currentRoll + " @ " + "1");
+                } else if (currentRoll == 2) {
+                    dice[j] = currentRoll;
+                    // System.out.println(currentRoll + " @ " + "2");
+                } else if (currentRoll == 3) {
+                    dice[j] = currentRoll;
+                    // System.out.println(currentRoll + " @ " + "3");
+                } else if (currentRoll == 4) {
+                    dice[j] = 3;
+                    // System.out.println(currentRoll + " @ " + "4");
+                } else if (currentRoll == 5) {
+                    dice[j] = 4;
+                    // System.out.println(currentRoll + " @ " + "5");
+                } else if (currentRoll == 6) {
+                    dice[j] = 5;
+                    // System.out.println(currentRoll + " @ " + "6");
+                } else if (currentRoll == 7) {
+                    dice[j] = 5;
+                    // System.out.println(currentRoll + " @ " + "7");
+                } else {
+                    dice[j] = 5;
+                    // System.out.println(currentRoll + " @ " + "8");
+                }
             }
             ++probs[dice[0] + dice[1]];
         }
+
         double sum = 0;
-        for (int i = 0; i < probs.length; ++i) {
+
+        for (int i = 2; i < 11; ++i) {
             System.out.println(i + "\t" + (double)probs[i]/N);
-            sum += probs[i]/N;
+            sum += (double)probs[i] / N;
         }
-        System.out.println(sum);
+        System.out.println("Sum = " + sum);
     }
 
+
     public static void main(String args[]) {
-        OneDie(); // 0 and 1 should have no rolls
+        TwoDice(); // 0 and 1 should have no rolls
     }
 }
