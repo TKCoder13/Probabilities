@@ -96,8 +96,53 @@ public class Dice {
         System.out.println("Sum = " + sum);
     }
 
+    public static int cDiceRoll(int[] cDie) {
+        int[] currDie = cDie;
+        int sides = 6;
+        return currDie[rn.nextInt(sides)];
+    }
+
+    public static void diceCheck(int[] arr1, int[] arr2) {
+        int[] dieA = arr1;
+        int[] dieB = arr2;
+        int N = 1000000;
+        int winsDieA = 0;
+        for (int i = 0; i < N; i++) {
+            if (cDiceRoll(dieA) > cDiceRoll(dieB)) {
+                winsDieA++;
+            }
+        }
+        System.out.println("The first die won " + winsDieA + "/" + N + " times! The percentage is " + (double)winsDieA/(double)N);
+    }
 
     public static void main(String args[]) {
-        TwoDice(); // 0 and 1 should have no rolls
+        int[] die1 = {1,2,3,9,10,11};
+        int[] die2 = {0,1,7,8,8,9};
+        int[] die3 = {5,5,6,6,7,7};
+        int[] die4 = {3,4,4,5,11,12};
+        System.out.println("Die 1 vs Die 2");
+        diceCheck(die1, die2);
+        System.out.println("Die 1 vs Die 3");
+        diceCheck(die1, die3);
+        System.out.println("Die 1 vs Die 4");
+        diceCheck(die1, die4);
+        System.out.println("Die 2 vs Die 1");
+        diceCheck(die2, die1);
+        System.out.println("Die 2 vs Die 3");
+        diceCheck(die2, die3);
+        System.out.println("Die 2 vs Die 4");
+        diceCheck(die2, die4);
+        System.out.println("Die 3 vs Die 1");
+        diceCheck(die3, die1);
+        System.out.println("Die 3 vs Die 2");
+        diceCheck(die3, die2);
+        System.out.println("Die 3 vs Die 4");
+        diceCheck(die3, die4);
+        System.out.println("Die 4 vs Die 1");
+        diceCheck(die4, die1);
+        System.out.println("Die 4 vs Die 2");
+        diceCheck(die4, die2);
+        System.out.println("Die 4 vs Die 3");
+        diceCheck(die4, die3);
     }
 }
